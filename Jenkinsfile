@@ -5,7 +5,11 @@ pipeline {
     stages {
 
         stage("build"){
-
+            when {
+                expression {
+                    CODE_CHANGES == true
+                }
+            }
             steps {
                 echo 'building the app'
             }
@@ -15,6 +19,7 @@ pipeline {
 
             steps {
                 echo 'testing the app'
+                echo WORKSPACE
             }
         }
 
