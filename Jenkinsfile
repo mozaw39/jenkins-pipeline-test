@@ -5,12 +5,16 @@ pipeline {
         maven 'Maven'
         jdk 'Java_JDK'
     }
+    environment {
+        DOCKER_HOME_CREDENTIALS = credentials('docker-hub')
+    }
     stages {
 
         stage("build"){
             steps {
                 echo 'building the app'
                 sh "mvn clean"
+                sh "mvn verify"
                  sh 'mvn package'
             }
         }
@@ -33,10 +37,10 @@ pipeline {
                 echo 'deploying the app'
             }
         }
-        stage("make container"){
-            steps {
-                echo 'make container for the app'
-                sh "cp ${WORKSPACE}/target/jenkins-pipeline-test-project.war /opt/jboss/standalone/deployment/jenkins-pipeline-test-project.war"
+       stage('Push image') {
+            docker.withRegistry('https://registry.hub.docker.com', 'git') {
+                app.push("${env.BUILD_NUMBER}")
+                app.push("latest")
             }
         }
     }
