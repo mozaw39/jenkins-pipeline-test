@@ -14,6 +14,6 @@ public class CalculatorTest {
 
     @Test
     public void sumTest() {
-        assertEquals(4, sum(2,2) );
+        assertEquals(3, sum(2,2) );
     }
 }
