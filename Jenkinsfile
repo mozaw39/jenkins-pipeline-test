@@ -19,11 +19,24 @@ pipeline {
         }
 
         stage("deploy"){
-
+            when {
+                expression {
+                    BRANCH_NAME == "none"
+                }
+            }
             steps {
                 echo 'deploying the app'
             }
         }
-
+    }
+    post {
+        always {
+        }
+        success {
+            echo 'sucess'
+        }
+        failure {
+            echo 'failure'
+        }
     }
 }
