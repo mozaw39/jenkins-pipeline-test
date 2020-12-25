@@ -15,7 +15,7 @@ pipeline {
                 echo 'building the app'
                 sh "mvn clean"
                 sh "mvn compile"
-                 sh 'mvn package'
+
             }
         }
 
@@ -31,11 +31,12 @@ pipeline {
         stage("deploy"){
             when {
                 expression {
-                    BRANCH_NAME == "none"
+                    BRANCH_NAME == "main"
                 }
             }
             steps {
                 echo 'deploying the app'
+                sh 'mvn package'
             }
         }
     }
