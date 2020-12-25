@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo 'building the app'
                 sh "mvn clean"
-                sh "mvn verify"
+                sh "mvn compile"
                  sh 'mvn package'
             }
         }
@@ -24,6 +24,7 @@ pipeline {
             steps {
                 echo 'testing the app'
                 echo "${WORKSPACE}"
+                sh "mvn test"
             }
         }
 
@@ -35,12 +36,6 @@ pipeline {
             }
             steps {
                 echo 'deploying the app'
-            }
-        }
-       stage('Push image') {
-            docker.withRegistry('https://registry.hub.docker.com', 'git') {
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
             }
         }
     }
