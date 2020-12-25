@@ -18,7 +18,7 @@ public class RestEndPoint {
 
     @GET
     public Response getGreetings() {
-        return Response.ok("Welcome, This a jenkins pipeling test project, MOZAW")
+        return Response.ok("Welcome, This a jenkins pipeling test project, MOZAW TEST")
                 .build();
     }
 
