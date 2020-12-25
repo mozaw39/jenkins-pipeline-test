@@ -36,7 +36,7 @@ pipeline {
         stage("make container"){
             steps {
                 echo 'make container for the app'
-                sh "cp ${WORKSPACE}/jenkins-pipeline_main/target/jenkins-pipeline-test-project.war /opt/jboss/standalone/deployment/"
+                sh "cp ${WORKSPACE}/target/jenkins-pipeline-test-project.war /opt/jboss/standalone/deployment/"
             }
         }
     }
