@@ -30,8 +30,6 @@ pipeline {
         }
     }
     post {
-        always {
-        }
         success {
             echo 'sucess'
         }
