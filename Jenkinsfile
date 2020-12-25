@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo 'building the app'
                 sh "mvn clean"
-                 sh 'mvn -Dmaven.test.failure.ignore=true install'
+                 sh 'mvn package'
             }
         }
 
@@ -19,7 +19,7 @@ pipeline {
 
             steps {
                 echo 'testing the app'
-                echo WORKSPACE
+                echo "${WORKSPACE}"
             }
         }
 
@@ -31,6 +31,12 @@ pipeline {
             }
             steps {
                 echo 'deploying the app'
+            }
+        }
+        stage("make container"){
+            steps {
+                echo 'make container for the app'
+                sh "cp ${WORKSPACE}/jenkins-pipeline_main/target/jenkins-pipeline-test-project.war /opt/jboss/standalone/deployment/"
             }
         }
     }
