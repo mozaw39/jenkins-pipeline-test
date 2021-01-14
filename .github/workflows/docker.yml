@@ -39,4 +39,6 @@ jobs:
       - name: Maven Package
         run: mvn install
       - name: docker push
-        run: docker push mozaw39/github-actions-test-ci-cd
+        run: |
+          docker build . -t mozaw39/github-actions-test-ci-cd
+          docker push mozaw39/github-actions-test-ci-cd
