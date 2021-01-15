@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jenkins-pipeline-test" />
         <module name="jenkins-pipeline-test-project" />
+        <module name="jenkins-pipeline-test" />
       </profile>
     </annotationProcessing>
   </component>
